@@ -14,7 +14,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: './assets/js/[name].bundle.js',
+    filename: './js/[name].bundle.js',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -40,7 +40,12 @@ const config = {
         use: [
           'style-loader',
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -52,6 +57,20 @@ const config = {
           },
           'sass-loader',
         ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/,
+        use: [{
+          loader: 'url-loader',
+        }],
+      },
+      {
+        test: /\.(svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]',
+          publicPath: '../',
+        },
       },
     ],
   },
@@ -68,17 +87,17 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'About',
       filename: 'index.html',
-      template: './src/html/aboutPage.html',
+      template: './src/html/about.html',
       hash: true,
     }),
     new HtmlWebpackPlugin({
       title: 'Start of sales',
       filename: 'startOfSales.html',
-      template: './src/html/startOfsalesPage.html',
+      template: './src/html/startOfSales.html',
       hash: true,
     }),
     new MiniCssExtractPlugin({
-      filename: './assets/css/[name].css',
+      filename: './css/style.css',
       chunkFilename: '[id].css',
       ignoreOrder: false,
     }),
