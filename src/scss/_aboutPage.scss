@@ -1,0 +1,121 @@
+@import './_variables';
+
+//svg
+$background-img: url('../assets/img/background-image.svg');
+$card-image: url('../assets/img/room.svg');
+
+//===main===
+.main {
+	&-image {
+		background-image: $background-img;
+		background-repeat: no-repeat;
+		background-position: 0 -80px;
+	}
+	&-container {
+		&__description {
+			padding-top: 68px;
+		}
+		&__cards {
+			max-width: inherit;
+
+			&__wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				margin-top: 30px;
+			}
+		}
+		&__location {
+			&__map {
+				margin-top: 60px;
+				max-width: 100%;
+				border-radius: 10px;
+				height: 410px;
+			}
+		}
+		&__files {}
+
+	}
+}
+
+.card {
+	width: 270px;
+	height: 335px;
+	margin: 0 20px 20px 0;
+	padding: 20px;
+	background-image: $card-image;
+	background-color: $card-color;
+	border-radius: 10px;
+
+	display: flex;
+  flex-direction: column;
+	justify-content: flex-end;
+	
+	&:nth-child(3n) {
+		margin-right: 0;
+	}
+	&-title {
+		font-family: $font-heading;
+		font-size: 1.125rem;
+		line-height: 1.56;
+		font-weight: bold;
+		color: $text-color;
+	}
+	&-text {
+		transition: opacity 0.5s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+	}
+	&-text p {
+		line-height: 1.76;
+		margin-top: 15px;
+	}
+	&:hover > &-text {
+		opacity: 1;
+    height: auto;
+	}
+}
+.popover {
+	width: 154px;
+	height: 90px;
+	border-radius: 5px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.32);
+}
+.link {
+		position: fixed;
+		width: 60px;
+		height: 100vh;
+		background-color: $text-color;
+		color: $logo-color;
+		top: 0;
+		padding: 0 21px;
+
+	&-files {
+		left: 0;
+	}
+	&-files > a {
+		display: inline-block;
+		position: absolute;
+		transform: rotate(-90deg);
+		transform-origin: left;
+		top: 50%;
+		left: 50%;
+	}
+	&-location {
+		right: 0;
+	}
+
+	&-location > a {
+		display: inline-block;
+		position: absolute;
+		transform: rotate(90deg);
+		transform-origin: right;
+		top: calc(50% + 120px/2);
+		right: 50%;
+	}
+}
+
+
+
+
